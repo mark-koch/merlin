@@ -1,0 +1,14 @@
+WHITESPACE = _{ " " | "\t" | "\r" }
+COMMENT = _{ "#" ~ (!"\n" ~ ANY)* }
+
+file = { SOI ~ line_end* ~ statement* ~ EOI }
+statement = _{ repeat_block | instruction }
+repeat_block = { ^"repeat" ~ unsigned ~ "{" ~ line_end* ~ statement* ~ "}" ~ line_end* }
+instruction = { identifier ~ arguments? ~ target* ~ (line_end | &"}" | &EOI) }
+
+arguments = { "(" ~ (number ~ ("," ~ number)*)? ~ ")" }
+target = @{ (!WHITESPACE ~ !"\n" ~ !"#" ~ !"}" ~ ANY)+ }
+identifier = @{ (ASCII_ALPHANUMERIC | "_")+ }
+unsigned = @{ ASCII_DIGIT+ }
+number = @{ ("+" | "-")? ~ ((ASCII_DIGIT+ ~ ("." ~ ASCII_DIGIT*)?) | ("." ~ ASCII_DIGIT+)) ~ (("e" | "E") ~ ("+" | "-")? ~ ASCII_DIGIT+)? }
+line_end = _{ "\n"+ }

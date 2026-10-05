@@ -1,0 +1,13 @@
+diff --git a/cpp/src/sampler/active_kernels.hpp b/cpp/src/sampler/active_kernels.hpp
+index b107423..d965cc2 100644
+--- a/cpp/src/sampler/active_kernels.hpp
++++ b/cpp/src/sampler/active_kernels.hpp
+@@ -4,6 +4,8 @@
+ 
+ #include <cstddef>
+ #include <cstdint>
++#if defined(__AVX2__) && defined(__FMA__)
+ #include <immintrin.h>
++#endif
+ 
+ namespace symft::detail {

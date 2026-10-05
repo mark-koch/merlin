@@ -1,0 +1,39 @@
+site_name: DCP Simulation
+site_url: https://mydomain.org/mysite
+repo_url: https://github.com/mark-koch/merlin
+repo_name: mark-koch/merlin
+
+theme:
+  name: material
+  features:
+    - content.code.copy
+
+nav:
+  - Overview: index.md
+  - Python API: api.md
+  - Circuit Format: circuit-format.md
+
+plugins:
+  - search
+  - mkdocstrings:
+      handlers:
+        python:
+          paths:
+            - python
+          options:
+            docstring_style: google
+            group_by_category: false
+            members_order: source
+            show_root_heading: false
+            show_source: false
+            show_signature_annotations: true
+            separate_signature: true
+
+markdown_extensions:
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences
