@@ -2,13 +2,15 @@
 
 `merlin` is a simulator for non-Clifford quantum error correction circuits. It supports circuits in the CNOT+T gateset and runs in polynomial time.
 
-## Quick Start
+## Installation
 
-Install `merlin` by running
+Install merlin by running
 
 ```console
 pip install merlin-sim
 ```
+
+## Quick start
 
 The `Simulator` class can be used to interactively apply gates and measurements:
 
@@ -24,6 +26,23 @@ sim.cnot(0, 1)
 result = sim.measure(0)
 p_true = sim.peek_z_probability(1)
 parity = sim.measure_observable("-XX", flip_probability=0.001)
+```
+
+Note that `merlin` only supports certain kinds of X measurements such as flag or gauge measurements.
+For unsupported measurements, the simulator will raise a `MeasurementError`:
+
+```python
+# Measuring CCZ|+++> in X is not supported
+sim = Simulator()
+sim.reset_x(0, 1, 2)
+sim.ccz(0, 1, 2)
+sim.measure_x(0)
+```
+
+Output:
+
+```
+MeasurementError: X measurement on qubit 0 is incompatible: non-affine zero set
 ```
 
 The `CircuitSampler` class can be used to sample from circuits in an extended stim-like format:
@@ -49,6 +68,8 @@ print(result.exp_vals)
 print(result.detectors)
 print(result.observables)
 ```
+
+The full API and circuit specification is avaialble on the [documentation page](https://mark-koch.github.io/merlin/).
 
 
 ## Rust Interface
