@@ -1,7 +1,7 @@
 [project]
-name = "merlin"
+name = "merlin-sim"
 version = "0.1.0"
-description = "Polynomial-time simulator non-Clifford quantum error correction"
+description = "Polynomial-time simulator for non-Clifford quantum error correction"
 readme = "README.md"
 requires-python = ">=3.10"
 dependencies = ["numpy>=2.1"]
