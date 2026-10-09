@@ -1,6 +1,8 @@
-# Merlin
+# Merlin Quantum Simulator
 
-`merlin` is a simulator for non-Clifford quantum error correction circuits. It supports circuits in the CNOT+T gateset and runs in polynomial time.
+`merlin-sim` is a simulator for non-Clifford quantum error correction circuits. It supports circuits that can be decomposed into CNOT, T, Paulis, Z-measurements and certain state-dependent *compatible* X-measurements. It keeps track of a representation of the state and can sample computational basis states, as well as compute expectation values and amplitudes, all in polynomial time in the circuit depth and size. It is based on the paper [Polynomial-time simulation of non-Clifford quantum error correction](https://arxiv.org/abs/2610.06811) by Serban Cercelescu, Mark Koch and Arthur Pesah.
+
+The documentation is available [here](https://mark-koch.github.io/merlin/).
 
 ## Installation
 
